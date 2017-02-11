@@ -1,0 +1,39 @@
+
+
+  <div class="container">
+  <a href="/show" class="btn btn-primary">Add More</a>         
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Endpoint URL</th>
+        <th>Method</th>
+        <th>Interval</th>
+        <th>Is It Enabled? </th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @details.each do |detail| %>
+      <tr>
+        <td><%=detail[:id]%></td>
+        <td><%=detail[:url]%></td>
+        <td><%=detail[:method_name]%></td>
+        <td><%=detail[:interval]%></td>
+        <td><%=detail[:enabled]%></td>
+        <td><%=detail[:status]%></td>
+        <td>
+          <a class="btn btn-default actionButton" href="#"> Check </a>
+          <a class="btn btn-default actionButton" href="/details/<%=detail.id%>"> Edit </a>
+          <a class="btn btn-default actionButton" href="/<%=detail.id%>/delete"> Delete </a>
+        </td>
+      </tr>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
+
+

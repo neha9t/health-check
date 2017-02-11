@@ -1,0 +1,10 @@
+<% if @details %>
+  <p>Are you sure you want to delete the following note: <em>"<%= @details.url %>"</em>?</p>
+  <form action="/<%= @details.id %>" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Yes, Delete It!">
+    <a href="/details">Cancel</a>
+  </form>
+<% else %>
+  <p>Detail not found.</p>
+<% end %>
