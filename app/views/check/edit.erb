@@ -13,13 +13,6 @@
           </div>
 
           <div class = "form-group">
-            <label for="method_name" class = "control-label" >Method:</label>
-            <select class="form-control" name="method_name" id="method_name" value='<%=@details.method_name%>'required>
-              <option value="GET">GET</option>
-            </select>
-          </div>
-
-          <div class = "form-group">
             <label for="polling-interval" class = "control-label">Polling Interval:</label>
             <div class="input-group">
               <input type="number" class="form-control has-error" name="interval" id="interval" value="<%=@details.interval %>"  required>
@@ -31,14 +24,6 @@
             <label><input type="checkbox" name="enabled" value="true" <%= @details.enabled ? "checked" : "" %> >Do you want to start it now </label>
           </div>
           
-           <!-- <div class="checkbox">
-            <% if @details.enabled? %>
-              <label><input type="checkbox" name="enabled" value="true" checked="checked">Do you want to start it now </label>
-            <% else%>
-              <label><input type="checkbox" name="enabled" value="false" >Do you want to start it now </label>
-            <% end%>
-          </div> -->
-
           <div class = "form-group">
             <div class = "col-sm-offset-8 col-sm-12">
               <button type = "reset" class = "btn btn-default">Reset</button>
