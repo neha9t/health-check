@@ -1,4 +1,5 @@
-require_relative '../jobs/sidekiq'
+require_relative '../workers/health_check_worker'
+require 'pry'
 
 class CheckController < ApplicationController
 
@@ -9,10 +10,7 @@ class CheckController < ApplicationController
 
   def new
     @details = Check.create(check_params)
-    # binding.pry
-    if params[:enabled] == "true"
-      # HealthCheck.perform_async(@details.id)
-    end
+    @details.save
     @details.to_json
     redirect_to("/")
   end
@@ -41,7 +39,7 @@ class CheckController < ApplicationController
     @details = Check.find(params[:id])
     if params[:enabled] != @details.enabled
       if params[:enabled] == true
-        HealthCheck.perform_async(@details.id)
+        HealthCheckWorker.perform_async(@details.id)
       else
         
       end
@@ -70,6 +68,6 @@ class CheckController < ApplicationController
 
   def check_params
       params.permit(:url, :enabled, :interval)
-    end
+  end
 
 end
