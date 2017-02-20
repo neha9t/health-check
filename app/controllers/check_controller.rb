@@ -9,6 +9,7 @@ class CheckController < ApplicationController
   end
 
   def new
+    HealthCheckNotifierMailer.send_health_condition_email.deliver
     @details = Check.create(check_params)
     @details.save
     @details.to_json
@@ -27,7 +28,7 @@ class CheckController < ApplicationController
   end
 
   # get '/details/:id' do
-  def check  
+  def check
     @details = Check.find(params[:id])
     @title = "Edit note ##{params[:id]}"
     @details.to_json
@@ -41,7 +42,6 @@ class CheckController < ApplicationController
       if params[:enabled] == true
         HealthCheckWorker.perform_async(@details.id)
       else
-        
       end
     end
     @details.interval = params[:interval]
@@ -60,7 +60,7 @@ class CheckController < ApplicationController
   end
 
   # delete '/:id' do
-  def delete  
+  def delete
     @details = Check.find(params[:id])
     @details.destroy
     redirect_to("/")

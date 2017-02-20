@@ -1,8 +1,8 @@
 class HealthCheckWorker
 
-  include Sidekiq::Worker   
+  include Sidekiq::Worker
     sidekiq_options :queue => :check, :retry => false, :backtrace => true
-  
+
   def perform(details_id)
     puts "I am inside Sidekiq perform method"
     record = Check.find(details_id)
@@ -17,7 +17,7 @@ class HealthCheckWorker
           # Send mail
       else
           HealthCheckNotifierMailer.send_health_condition_email.deliver
-          HealthCheckWorker.perform_in(record.interval.second.from_now,details_id)
+          # HealthCheckWorker.perform_in(record.interval.second.from_now,details_id)
           record.last_run = "Last Run: #{Time.now}"
           record.save
       end
