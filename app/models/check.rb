@@ -1,6 +1,7 @@
 class Check < ApplicationRecord
-  puts "I am inside Model"
+
   after_commit :run_sidekiq, on: :create
+  before_destroy :destroy_sidekiq_jobs
 
   private
     def run_sidekiq
@@ -9,4 +10,12 @@ class Check < ApplicationRecord
         HealthCheckWorker.perform_async(self.id)
   #    end
     end
+    def destroy_sidekiq_jobs
+      scheduled = Sidekiq::ScheduledSet.new
+      scheduled.each do |job|
+        if job.klass == 'HealthCheckWorker' && job.args.first == id
+          job.delete
+        end
+    end
+  end
 end

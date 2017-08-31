@@ -2,10 +2,9 @@ require_relative '../workers/health_check_worker'
 require 'pry'
 
 class CheckController < ApplicationController
-
 # post '/details/new' do
   def show
-  	render "new"
+    render "new"
   end
 
   def new
@@ -69,5 +68,4 @@ class CheckController < ApplicationController
   def check_params
       params.permit(:url, :enabled, :interval)
   end
-
 end
