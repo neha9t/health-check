@@ -4,7 +4,7 @@
 # pick it up automatically.
 ---
 :verbose: true
-:concurrency: 10
+:concurrency: 1
 
 # Set timeout to 8 on Heroku, longer if you manage your own systems.
 :timeout: 30
