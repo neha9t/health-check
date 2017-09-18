@@ -40,6 +40,7 @@ gem 'rest-client'
 gem "sidekiq"
 gem 'slim'
 gem 'sendgrid-ruby'
+gem 'foreman'
 
 
 group :development, :test do
