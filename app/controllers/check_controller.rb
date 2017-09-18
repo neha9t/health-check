@@ -39,7 +39,7 @@ class CheckController < ApplicationController
       if params[:enabled] == true
         HealthCheckWorker.perform_async(@details.id)
       else
-        
+        #todo Stopping Sidekiq Job
       end
     end
     @details.interval = params[:interval]
