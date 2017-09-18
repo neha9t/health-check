@@ -4,8 +4,6 @@ class Check < ApplicationRecord
   before_destroy :destroy_sidekiq_jobs
   before_save :default_values
 
- 
-
   private
 
     def default_values
@@ -23,7 +21,6 @@ class Check < ApplicationRecord
     end
     
     def destroy_sidekiq_jobs
-    binding.pry
       scheduled = Sidekiq::ScheduledSet.new
       scheduled.each do |job|
         if job.klass == 'HealthCheckWorker' && job.args.first == id
