@@ -3,24 +3,33 @@ class HealthCheckWorker
   include Sidekiq::Worker   
     sidekiq_options :queue => :check, :retry => false, :backtrace => true
   
-  def perform(details_id)
-    puts "I am inside Sidekiq perform method"
-    record = Check.find(details_id)
-    puts record
-    record_url = record.url
-    if record.enabled == true
-      count = 0
-      session_response = RestClient.get(record_url, headers={})
-      session_code = session_response.code
+    ATTEMPTS = {}
 
-      if session_code != 200
-          # Send mail
-      else
-          HealthCheckNotifierMailer.send_health_condition_email.deliver
-          HealthCheckWorker.perform_in(record.interval.second.from_now,details_id)
-          record.last_run = "Last Run: #{Time.now}"
-          record.save
+  def perform(details_id, details_url)
+    ATTEMPTS[details_id] = 0
+    session_response = RestClient.get(details_url, headers={})
+    session_code = session_response.code
+    record = Check.find(details_id)
+    if session_code ==200
+      HealthCheckWorker.perform_in(record.interval.second.from_now, details_id, details_url)
+      record.last_run = "#{Time.now}"
+      record.save
+    elsif session_code !=200
+      ATTEMPTS[details_id]+=1
+      (1..9).each do |count|
+        HealthCheckWorker.perform_async(details_id)
+        ATTEMPTS[details_id]+=1
+        retry_when_session_code_fails(details_id)
       end
     end
+  end
+
+  def retry_when_session_code_fails(details_id)
+      if ATTEMPTS[details_id] == 3
+        # HealthCheckNotifierMailer.send_health_condition_email.deliver  
+      elsif ATTEMPTS[details_id] == 5
+        # HealthCheckNotifierMailer.send_health_condition_email.deliver
+        ATTEMPTS[details_id] == 0
+      end
   end
 end
