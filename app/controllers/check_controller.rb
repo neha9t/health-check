@@ -9,7 +9,6 @@ class CheckController < ApplicationController
 
   def new
     @details = Check.create(check_params)
-    @details.save
     @details.to_json
     redirect_to("/")
   end
@@ -66,6 +65,6 @@ class CheckController < ApplicationController
   end
 
   def check_params
-      params.permit(:url, :enabled, :interval)
+      params.permit(:url, :enabled, :interval, :last_run)
   end
 end
