@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170211070113) do
+ActiveRecord::Schema.define(version: 20170919093307) do
 
   create_table "checks", force: :cascade do |t|
     t.string   "url"
     t.integer  "interval"
     t.boolean  "enabled"
     t.datetime "last_run"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "is_site_online"
   end
 
 end
