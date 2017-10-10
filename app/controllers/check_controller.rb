@@ -37,9 +37,9 @@ class CheckController < ApplicationController
     @details = Check.find(params[:id])
     if params[:enabled] != @details.enabled
       if params[:enabled] == true
-        HealthCheckWorker.perform_async(@details.id)
-      else
-        #todo Stopping Sidekiq Job
+        HealthCheckWorker.perform_async(@details.id,@details_url)
+      elsif params[:enabled] == false
+        Check.destroy_sidekiq_jobs
       end
     end
     @details.interval = params[:interval]

@@ -24,3 +24,5 @@
 # Other files
 *.rdb
 dump.rdb
+sendgrid.env
+environment.rb

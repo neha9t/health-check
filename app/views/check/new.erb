@@ -6,7 +6,8 @@
         <form action="/details/new" method="POST">
           <div class = "form-group">
             <label for="url" class = "control-label">URL:</label>
-            <input class="form-control has-error" type="url" id="url" name="url" placeholder="Your endpoint goes here" required>
+            <input class="form-control has-error" type="url" id="url" name="url" placeholder="Enter your website URL" required>
+            <p><strong>Note:</strong> Please add "http://" or "https://"</p>
           </div>
 
           <div class = "form-group">
@@ -21,8 +22,6 @@
               <span class="input-group-addon">sec</span>
             </div>
           </div>
-
-
 <!--           <div class = "form-group">
             <label for="polling-interval" class = "control-label">Polling Interval:</label>
             <div class="input-group">
@@ -32,7 +31,7 @@
           </div> -->
 
           <div class="checkbox">
-            <label><input type="checkbox" name="enabled" value="true">Do you want to start polling now </label> <label for="true">
+            <label><input type="checkbox" name="enabled" value="true">Click here if you want to <b>enable</b> the health check </label> <label for="true">
           </div>
 
           <div class = "form-group">

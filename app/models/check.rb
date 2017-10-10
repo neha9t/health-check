@@ -1,6 +1,7 @@
 class Check < ApplicationRecord
 
   after_commit :run_sidekiq, on: :create
+  after_update :destroy_sidekiq_jobs, unless: :is_enabled?
   before_destroy :destroy_sidekiq_jobs
   before_save :default_values
 
@@ -9,6 +10,7 @@ class Check < ApplicationRecord
     def default_values
       self.enabled||= false
       if self.enabled == false
+        self.is_site_online ||= "NA"
         self.last_run ||= "Awaiting: #{Time.now}"
       end
     end
@@ -20,12 +22,18 @@ class Check < ApplicationRecord
      end
     end
     
+    def is_enabled?
+      binding.pry
+      return if self.enabled == false
+    end
+    
     def destroy_sidekiq_jobs
-      scheduled = Sidekiq::ScheduledSet.new
-      scheduled.each do |job|
-        if job.klass == 'HealthCheckWorker' && job.args.first == id
-          job.delete
-        end
+      binding.pry
+        scheduled = Sidekiq::ScheduledSet.new
+        scheduled.each do |job|
+          if job.klass == 'HealthCheckWorker' && job.args.first == id
+            job.delete
+          end
     end
   end
 end
