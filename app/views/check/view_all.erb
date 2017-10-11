@@ -1,41 +1,46 @@
-
-
-  <div class="container">
-
-
-  <a href="/show" class="btn btn-primary">Add More</a>         
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Website URL</th>
-        <th>Monitor Interval</th>
-        <th>Monitoring Status</th>
-        <th>Last Run Status <span class="glyphicon glyphicon glyphicon-flag" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Status shows when was the health-check has run last"></span></th>
-        <th>Is site online?</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @details.each do |detail| %>
-      <tr>
-        <td><%=detail[:id]%></td>
-        <td><%=detail[:url]%></td>
-        <td><%=detail[:interval]%></td>
-        <td><%=detail[:enabled]%></td>
-        <td><%=detail[:last_run]%></td>
-        <td><%=detail[:is_site_online]%></td>
-        <td>
-         <!--  <a class="btn btn-default actionButton" href="#"> Check </a> -->
-          <a class="btn btn-default actionButton" href="/details/<%=detail.id%>"> Edit </a>
-          <a class="btn btn-default actionButton" href="/<%=detail.id%>/delete"> Delete </a>
-        </td>
-      </tr>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-
+<div class="container">
+    <a href="/show" class="btn btn-primary">Add More</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Website URL</th>
+                <th>Monitor Interval</th>
+                <th>Monitoring Status</th>
+                <th>Last Run Status <span class="glyphicon glyphicon glyphicon-flag" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Status shows when was the health-check has run last"></span></th>
+                <th>Is site online?</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @details.each do |detail| %>
+                <tr>
+                    <td>
+                        <%=detail[:id]%>
+                    </td>
+                    <td>
+                        <%=detail[:url]%>
+                    </td>
+                    <td>
+                        <%=detail[:interval]%>
+                    </td>
+                    <td>
+                        <%=detail[:enabled]%>
+                    </td>
+                    <td>
+                        <%=detail[:last_run]%>
+                    </td>
+                    <td>
+                        <%=detail[:is_site_online]%>
+                    </td>
+                    <td>
+                        <!--  <a class="btn btn-default actionButton" href="#"> Check </a> -->
+                        <a class="btn btn-default actionButton" href="/details/<%=detail.id%>"> Edit </a>
+                        <a class="btn btn-default actionButton" href="/<%=detail.id%>/delete"> Delete </a>
+                    </td>
+                </tr>
+                </tr>
+                <% end %>
+        </tbody>
+    </table>
 </div>
-
-

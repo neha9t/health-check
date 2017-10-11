@@ -1,45 +1,40 @@
-
-   
-    <div class="container" style="max-width:600px;padding:90px 90px;">
-        <h3>Details</h3>
-
-        <form action="/details/new" method="POST">
-          <div class = "form-group">
-            <label for="url" class = "control-label">URL:</label>
+<div class="container" style="max-width:600px;padding:90px 90px;">
+    <h3>Details</h3>
+    <form action="/details/new" method="POST">
+        <div class="form-group">
+            <label for="url" class="control-label">URL:</label>
             <input class="form-control has-error" type="url" id="url" name="url" placeholder="Enter your website URL" required>
             <p><strong>Note:</strong> Please add "http://" or "https://"</p>
-          </div>
-
-          <div class = "form-group">
-            <label for="polling-interval" class = "control-label">Polling Interval:</label>
+        </div>
+        <div class="form-group">
+            <label for="polling-interval" class="control-label">Polling Interval:</label>
             <div class="input-group">
-              <select class="form-control" name="interval" id="inlineFormInputGroup" required>
-                <option value="5" selected>5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-              </select>
-              <span class="input-group-addon">sec</span>
+                <select class="form-control" name="interval" id="inlineFormInputGroup" required>
+                    <option value="5" selected>5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select>
+                <span class="input-group-addon">sec</span>
             </div>
-          </div>
-<!--           <div class = "form-group">
+        </div>
+        <!--           <div class = "form-group">
             <label for="polling-interval" class = "control-label">Polling Interval:</label>
             <div class="input-group">
               <input type="number" class="form-control has-error" name="interval" id="interval" required>
               <span class="input-group-addon">sec</span>
             </div>
           </div> -->
-
-          <div class="checkbox">
-            <label><input type="checkbox" name="enabled" value="true">Click here if you want to <b>enable</b> the health check </label> <label for="true">
-          </div>
-
-          <div class = "form-group">
-            <div class = "col-sm-offset-8 col-sm-12">
-              <button type = "reset" class = "btn btn-default">Reset</button>
-              <button type = "submit" class = "btn btn-primary">Submit</button>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="enabled" value="true">Click here if you want to <b>enable</b> the health check </label>
+            <label for="true">
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-8 col-sm-12">
+                <button type="reset" class="btn btn-default">Reset</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-          </div>
-        </form>
-
-    </div>
+        </div>
+    </form>
+</div>
