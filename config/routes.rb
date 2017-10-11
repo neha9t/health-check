@@ -6,6 +6,8 @@ mount Sidekiq::Web => '/sidekiq'
 
 post '/details/new/', to: 'check#new'
 get '/', to: 'check#index'
+get '/about', to: 'check#about'
+get '/contact', to: 'check#contact'
 get '/show/', to: 'check#show'
 get '/details/:id/', to: 'check#check'
 put '/details/:id/', to: 'check#update'
