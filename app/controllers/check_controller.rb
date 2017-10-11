@@ -64,6 +64,14 @@ class CheckController < ApplicationController
     redirect_to("/")
   end
 
+  def contact
+    render "contact"
+  end
+
+  def about
+    render "about"
+  end
+
   def check_params
       params.permit(:url, :enabled, :interval, :last_run)
   end
