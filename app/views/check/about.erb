@@ -1,0 +1,20 @@
+<div class="container" style="max-width:900px;" align="center" >
+  
+    <h3>About Ping Reporter</h3>
+    <p class="text-left font-weight-normal" style=" font-size: 16px;">While company's production server was not responsive for 12 hrs with noone knowing about it until next morning, I decided to build a system with which the health check of app servers and various other sub-systems inside can be determined.</p>
+
+    <p class="text-justify font-weight-normal" style="font-size: 16px;"><em>Ping Reporter</em> is a project which checks the health of the websites by pinging them on regular intervals. Here, as a user can have many different websites to be monitored, I decided to use background worker as Sidekiq to take care of the processes.</p>
+
+    <p class="text-justify font-weight-normal" style="font-size: 16px;">While building the system, I started off with SQLite which is a file system db, when multiple websites were writing their data inside tables, I encountered "Database Locked error". This made me to fully understand why projects go from SQLite to PostgreSQL/MySQL etc. I decided to go for PostgreSQL.</p>
+
+    <p class="text-justify font-weight-normal" style="font-size: 16px;">
+      Future things to be done:
+
+    - Authentication - to support various users
+    - Notifications - to notify users
+    - Improve frontend
+
+    and many more!
+   </p>
+
+</div>
